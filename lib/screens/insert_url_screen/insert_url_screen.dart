@@ -4,12 +4,13 @@ import 'package:simple_spotify_parser/screens/screens.dart';
 class InsertUrlScreen extends StatelessWidget {
   InsertUrlScreen({Key? key}) : super(key: key);
 
-  TextEditingController urlController = TextEditingController();
+  TextEditingController urlController = TextEditingController(
+      text: 'https://open.spotify.com/album/1qwlxZTNLe1jq3b0iidlue');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Parser App')),
+      appBar: AppBar(title: const Text('Parser App')),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

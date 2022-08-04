@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
 import 'package:simple_spotify_parser/html_service/html_service.dart';
 import 'package:simple_spotify_parser/screens/screens.dart';
 
 GetIt getIt = GetIt.instance;
+Logger logger = Logger();
 void main() {
   getIt.registerLazySingleton<HtmlService>(() => HtmlService());
   runApp(const App());

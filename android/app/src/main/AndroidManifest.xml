@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.simple_spotify_parser">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="simple_spotify_parser"
         android:name="${applicationName}"

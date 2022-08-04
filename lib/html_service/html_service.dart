@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
 import 'package:metadata_fetch/metadata_fetch.dart';
@@ -31,19 +32,24 @@ class HtmlService {
       }
     }
 
-    List<Song> songList = [];
+    List<Future<Song>> songList = [];
 
     if (musicUrl.isNotEmpty) {
       for (var music in musicUrl) {
-        songList.add(await getSong(music));
+        songList.add(compute(getSong, music));
       }
+    }
+
+    List<Song> songs = [];
+    for (var element in songList) {
+      songs.add(await element);
     }
 
     Playlist playlist = Playlist(
         title: metadata.title ?? 'Empty',
         descriptions: metadata.description ?? 'Empty',
         image: metadata.image ?? 'Empty',
-        songs: songList);
+        songs: songs);
 
     return playlist;
   }
@@ -57,6 +63,8 @@ class HtmlService {
     }
 
     var document = html.parse(response.body);
+
+    //logger.d(document.getElementsByTagName('h2')[4].text);
 
     var title = document
         .getElementsByTagName('title')
@@ -79,7 +87,7 @@ class HtmlService {
       }
     }
 
-    album = await getAlbumName(album);
+    album = await compute(getAlbumName, album);
 
     String duration = formatedTime(int.parse(durationInSeconds));
 
