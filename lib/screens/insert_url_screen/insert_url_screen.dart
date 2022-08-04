@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:simple_spotify_parser/home/home.dart';
+import 'package:simple_spotify_parser/screens/screens.dart';
 
-class InsertUrl extends StatelessWidget {
-  InsertUrl({Key? key}) : super(key: key);
+class InsertUrlScreen extends StatelessWidget {
+  InsertUrlScreen({Key? key}) : super(key: key);
 
   TextEditingController urlController = TextEditingController();
 
@@ -28,7 +28,7 @@ class InsertUrl extends StatelessWidget {
                     const SnackBar(content: Text('Field is empty')));
               } else {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Home(
+                    builder: (context) => HomeScreen(
                           url: urlController.text,
                         )));
               }

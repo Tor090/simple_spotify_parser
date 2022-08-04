@@ -5,7 +5,7 @@ import 'package:metadata_fetch/metadata_fetch.dart';
 import '../model/model.dart';
 import '../util/helper.dart';
 
-class Service {
+class HtmlService {
   //static const _url = 'https://open.spotify.com/album/1qwlxZTNLe1jq3b0iidlue';
 
   Future<Playlist> getRequest(String url) async {

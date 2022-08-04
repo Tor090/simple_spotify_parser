@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simple_spotify_parser/service/service.dart';
+import 'package:simple_spotify_parser/html_service/html_service.dart';
 
 import '../model/playlist.dart';
 
@@ -7,19 +7,19 @@ part 'parse_event.dart';
 part 'parse_state.dart';
 
 class ParseBloc extends Bloc<ParseEvent, ParseState> {
-  ParseBloc(Service service)
-      : _service = service,
+  ParseBloc(HtmlService htmlService)
+      : _htmlService = htmlService,
         super(InitialParseState()) {
     on<StartParseEvent>((event, emit) => parseLink(event.url));
     on<ReloadParseEvent>((event, emit) => null);
   }
 
-  final Service _service;
+  final HtmlService _htmlService;
 
   Future<void> parseLink(String url) async {
     emit(LoadingParseState());
     try {
-      final data = await _service.getRequest(url);
+      final data = await _htmlService.getRequest(url);
 
       emit(SuccesParseState(data));
     } catch (e) {

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_spotify_parser/bloc/parse_bloc.dart';
-import 'package:simple_spotify_parser/service/service.dart';
+import 'package:simple_spotify_parser/html_service/html_service.dart';
+import 'package:simple_spotify_parser/main.dart';
 
-class Home extends StatelessWidget {
-  Home({required this.url, Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  HomeScreen({required this.url, Key? key}) : super(key: key);
 
   String url;
 
@@ -13,7 +14,8 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: BlocProvider(
-          create: (context) => ParseBloc(Service())..add(StartParseEvent(url)),
+          create: (context) =>
+              ParseBloc(getIt<HtmlService>())..add(StartParseEvent(url)),
           child: BlocBuilder<ParseBloc, ParseState>(
             builder: (context, state) {
               if (state is ErrorParseState) {
