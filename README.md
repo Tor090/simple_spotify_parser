@@ -1,6 +1,6 @@
 # simple_spotify_parser
 
-Simple test flutter app for MusConv
+Simple test flutter app
 
 ## Getting Started
 
