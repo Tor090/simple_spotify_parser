@@ -1,5 +1,5 @@
 name: simple_spotify_parser
-description: Simple test flutter app for MusConv
+description: Simple test flutter app
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
